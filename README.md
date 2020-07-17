@@ -1,3 +1,7 @@
+Fork DocxMerge library
+======================
+orginal https://github.com/krustnic/DocxMerge
+
 DocxMerge
 =========
 
@@ -16,47 +20,65 @@ Details
 Install
 -------
 
-    php composer.phar require krustnic/docx-merge
+    composer require mrdreek/docx-merge
 
 Merge Example
 -------------
 
+```php
     require "vendor/autoload.php";
     use DocxMerge\DocxMerge;
     
 	$dm = new DocxMerge();
-	$dm->merge( [
-        "templates/TplPage1.docx",
-        "templates/TplPage2.docx"
-    ], "/tmp/result.docx" );
+	$dm->merge(["templates/TplPage1.docx", "templates/TplPage2.docx"],
+        "/tmp/result.docx"
+    );
+```
+    
+Merge Example with page breaks
+-------------
+each new file will be from a new page
+
+```php
+    require "vendor/autoload.php";
+    use DocxMerge\DocxMerge;
+    
+	$dm = new DocxMerge();
+	$dm->merge(["templates/TplPage1.docx", "templates/TplPage2.docx"],
+        "/tmp/result.docx",
+        true
+    );
+```
 
 
 setValues Example
 -----------------
+```php
+	// Use "${NAME}" in docx file to create placeholders
 
-	# Use "${NAME}" in docx file to create placeholders
-
-	require "vendor/autoload.php";
+    require "vendor/autoload.php";
     use DocxMerge\DocxMerge;
     
-	$dm = new DocxMerge();
-	$dm->setValues( "templates/template.docx",
-                    "templates/result.docx",
-    				array( "NAME" => "Sterling", "SURNAME" => "Archer" ) );
-    				
-Or with styles ("bold", "italic", "underline"):
-    
-    $dm->setValues( "templates/template.docx",
-                    "templates/result.docx",
-                    [ 
-        			    "NAME" => [
-        			        [
-                                "value"      => "Sterling",
-                                "decoration" => [ "bold", "italic" ]
-        			        ],
-        			        [
-                                "value"      => "Archer",
-                                "decoration" => [ "bold", "underline" ] 
-        			        ]
-        			    ]
-                    ]);
+    $dm = new DocxMerge();
+    $dm->setValues("templates/template.docx",
+        "templates/result.docx",
+        array("NAME" => "Sterling", "SURNAME" => "Archer"));
+
+    // Or with styles ("bold", "italic", "underline"):
+
+    $dm->setValues("templates/template.docx",
+        "templates/result.docx",
+        [
+            "NAME" => [
+                [
+                    "value" => "Sterling",
+                    "decoration" => ["bold", "italic"]
+                ],
+                [
+                    "value" => "Archer",
+                    "decoration" => ["bold", "underline"]
+                ]
+            ]
+        ]
+    );
+```

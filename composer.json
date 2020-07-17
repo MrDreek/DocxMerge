@@ -1,7 +1,7 @@
 {
-  "name": "krustnic/docx-merge",
+  "name": "mrdreek/docx-merge",
   "type": "library",
-  "description": "Simple library for merging multiple MS Word \".docx\" files into one",
+  "description": "Fork of simple library for merging multiple MS Word \".docx\" files into one",
   "keywords": [
     "docx",
     "merge",
